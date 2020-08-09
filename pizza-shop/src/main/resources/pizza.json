@@ -1,0 +1,121 @@
+[{
+        "name": "margaritta",
+        "sizes": [{
+                "name": "small",
+                "size": 10.55,
+                "price": 5.00
+            },
+            {
+                "name": "medium",
+                "size": 20.55,
+                "price": 5.00
+
+            },
+            {
+                "name": "big",
+                "size": 30.55,
+                "price": 5.00
+
+            }
+        ],
+        "ingredients": [{
+                "name": "Kaese",
+                "price": 0.5
+            },
+            {
+                "name": "Tomate",
+                "price": 0.5
+            },
+            {
+                "name": "Spinat",
+                "price": 0.5
+            },
+            {
+                "name": "Salami",
+                "price": 0.5
+            }
+        ],
+
+        "price": 14.99
+    },
+    {
+        "name": "peperony",
+        "sizes": [{
+                "name": "small",
+                "size": 10.55,
+                "price": 5.00
+            },
+            {
+                "name": "medium",
+                "size": 20.55,
+                "price": 5.00
+
+            },
+            {
+                "name": "big",
+                "size": 30.55,
+                "price": 5.00
+
+            }
+        ],
+        "ingredients": [{
+                "name": "Kaese",
+                "price": 0.5
+            },
+            {
+                "name": "Tomate",
+                "price": 0.5
+            },
+            {
+                "name": "Spinat",
+                "price": 0.5
+            },
+            {
+                "name": "Salami",
+                "price": 0.5
+            }
+        ],
+
+        "price": 14.99
+    },
+    {
+        "name": "custom",
+        "sizes": [{
+                "name": "small",
+                "size": 10.55,
+                "price": 5.00
+            },
+            {
+                "name": "medium",
+                "size": 20.55,
+                "price": 5.00
+
+            },
+            {
+                "name": "big",
+                "size": 30.55,
+                "price": 5.00
+
+            }
+        ],
+        "ingredients": [{
+                "name": "Kaese",
+                "price": 0.5
+            },
+            {
+                "name": "Tomate",
+                "price": 0.5
+            },
+            {
+                "name": "Spinat",
+                "price": 0.5
+            },
+            {
+                "name": "Salami",
+                "price": 0.5
+            }
+        ],
+
+        "price": 14.99
+    }
+]
