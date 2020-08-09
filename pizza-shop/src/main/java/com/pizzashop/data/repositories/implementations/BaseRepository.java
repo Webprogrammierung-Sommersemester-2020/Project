@@ -47,7 +47,7 @@ public abstract class BaseRepository<T> implements IBaseRepository<T> {
     }
 
     @Override
-    public T findBy(String propertyName, Object value) {        
+    public List<T> findBy(String propertyName, Object value) {        
         return null;
     }
 
