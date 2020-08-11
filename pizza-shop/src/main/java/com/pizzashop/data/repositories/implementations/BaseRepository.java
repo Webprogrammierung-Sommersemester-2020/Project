@@ -68,16 +68,16 @@ public abstract class BaseRepository<T> implements IBaseRepository<T> {
             Field field = searchedField.get();
 
             if (!Collection.class.isAssignableFrom(field.getType())) {
-                List<T> pizzas = this.getAll();
-                for (T pizza : pizzas) {
+                List<T> models = this.getAll();
+                for (T model : models) {
                     try {
-                        Field fieldToCheck = pizza.getClass().getDeclaredField(propertyName);
+                        Field fieldToCheck = model.getClass().getDeclaredField(propertyName);
 
                         fieldToCheck.setAccessible(true);
-                        Object fieldsValue = getObjectValueByField(fieldToCheck, pizza);
+                        Object fieldsValue = getObjectValueByField(fieldToCheck, model);
 
                         if (fieldsValue.equals(value)) {
-                            result.add(pizza);
+                            result.add(model);
                         }
 
                     } catch (NoSuchFieldException e) {
