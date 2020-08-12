@@ -2,11 +2,7 @@ package com.pizzashop.data.repositories.implementations;
 
 import java.io.InputStream;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import javax.json.bind.Jsonb;
 import javax.json.bind.JsonbBuilder;
@@ -37,38 +33,48 @@ public class PizzaRepository extends BaseRepository<Pizza> implements IPizzaRepo
 
     @Override
     public List<Pizza> findBy(String propertyName, Object value) {
-                
+
         Optional<Field> searchedField = Arrays.stream(Pizza.class.getDeclaredFields())
                 .filter(f -> f.getName().toLowerCase().equals(propertyName.toLowerCase())).findFirst();
 
         if (searchedField.isPresent()) {
             List<Pizza> result = new ArrayList<>();
             Field field = searchedField.get();
-            
-            if (!Collection.class.isAssignableFrom(field.getType())) {
-                List<Pizza> pizzas = this.getAll();
-                for (Pizza pizza : pizzas) {
-                    try {
-                        Field fieldToCheck = pizza.getClass().getDeclaredField(propertyName);                        
 
-                        fieldToCheck.setAccessible(true);
+            List<Pizza> pizzas = this.getAll();
+            for (Pizza pizza : pizzas) {
+                try {
+                    Field fieldToCheck = pizza.getClass().getDeclaredField(propertyName);
+
+                    if (Collection.class.isAssignableFrom(fieldToCheck.getType())) {
+
+                        Collection fieldsValues = (Collection) getObjectValueByField(fieldToCheck, pizza);
+
+                        for (var fieldValue : fieldsValues) {
+                            Field[] fields = fieldValue.getClass().getDeclaredFields();
+                            var results = Arrays.stream(fields).filter(f -> getObjectValueByField(f, fieldValue).equals(value));
+
+                            if (results.count() > 0) {
+                                result.add(pizza);
+                            }
+                        }
+                    } else {
                         Object fieldsValue = getObjectValueByField(fieldToCheck, pizza);
 
-                        if(fieldsValue.equals(value)){
+                        if (fieldsValue.equals(value)) {
                             result.add(pizza);
-                        }                        
-
-                    } catch (NoSuchFieldException   e) {
-                        
-                        e.printStackTrace();
-                    } catch (SecurityException e) {
-                       
-                        e.printStackTrace();
+                        }
                     }
+
+                } catch (NoSuchFieldException e) {
+
+                    e.printStackTrace();
+                } catch (SecurityException e) {
+
+                    e.printStackTrace();
                 }
-                return result;
             }
-            
+            return result;
         }
         return null;
     }
