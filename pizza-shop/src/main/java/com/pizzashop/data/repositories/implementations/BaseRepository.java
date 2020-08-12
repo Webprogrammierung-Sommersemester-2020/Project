@@ -13,6 +13,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public abstract class BaseRepository<T> implements IBaseRepository<T> {
@@ -38,8 +39,13 @@ public abstract class BaseRepository<T> implements IBaseRepository<T> {
 
     @Override
     public boolean delete(T t) {
-        // TODO Auto-generated method stub
-        return false;
+        boolean deleted = false;
+        List<T> currentContent = this.getAll();
+        if (currentContent.contains(t)) {
+            currentContent.remove(t);
+        }
+        deleted = writeCollectionToJsonFile(currentContent);
+        return deleted;
     }
 
     @Override
@@ -59,6 +65,33 @@ public abstract class BaseRepository<T> implements IBaseRepository<T> {
     }
 
     @Override
+    public boolean update(T t) {
+        boolean updated = false;
+        List<T> currentContent = this.getAll();
+
+        Optional<T> entry = currentContent.stream().filter(o -> o.equals(t)).findFirst();
+        if (!entry.isPresent()) {
+            Field[] fields = t.getClass().getDeclaredFields();
+            Optional<Field> id = Arrays.stream(fields).filter(f -> f.getName().equals("id".toLowerCase())).findFirst();
+            Optional<Field> name = Arrays.stream(fields).filter(f -> f.getName().equals("name".toLowerCase())).findFirst(); //name is id for Pizza and Ingredients
+            List<Field> listOfIdInEntry = Arrays.stream(fields).filter(f -> (f.getName().contains("Id") || f.getName().contains("ID"))).collect(Collectors.toList()); //for example userId
+
+            if (id.isPresent()) {
+                updated = updateCollectionByFieldName(id.get(), t, currentContent);
+            } else if (!id.isPresent() && name.isPresent()) {
+                updated = updateCollectionByFieldName(name.get(), t, currentContent);
+            } else if (!id.isPresent() && (listOfIdInEntry.size() == 1)) {
+                Field namedId = listOfIdInEntry.stream().findFirst().get();
+                updated = updateCollectionByFieldName(namedId, t, currentContent);
+            }
+        } else {
+            updated = this.create(t);
+
+        }
+        return updated;
+    }
+
+    @Override
     public List<T> findBy(String propertyName, Object value) {
         Optional<Field> searchedField = Arrays.stream(this.model.getClass().getDeclaredFields())
                 .filter(f -> f.getName().toLowerCase().equals(propertyName.toLowerCase())).findFirst();
@@ -67,37 +100,37 @@ public abstract class BaseRepository<T> implements IBaseRepository<T> {
             List<T> result = new ArrayList<>();
             Field field = searchedField.get();
 
-            if (!Collection.class.isAssignableFrom(field.getType())) {
-                List<T> models = this.getAll();
-                for (T model : models) {
-                    try {
-                        Field fieldToCheck = model.getClass().getDeclaredField(propertyName);
+            List<T> models = this.getAll();
+            for (T model : models) {
+                try {
+                    Field fieldToCheck = model.getClass().getDeclaredField(propertyName);
 
-                        fieldToCheck.setAccessible(true);
+                    if (Collection.class.isAssignableFrom(fieldToCheck.getType())) {
+                        Collection fieldsValues = (Collection) getObjectValueByField(fieldToCheck, model);
+
+                        for (var fieldValue : fieldsValues) {
+                            Field[] fields = fieldValue.getClass().getDeclaredFields();
+                            var results = Arrays.stream(fields).filter(f -> getObjectValueByField(f, fieldValue).equals(value));
+
+                            if (results.count() > 0) {
+                                result.add(model);
+                            }
+                        }
+                    } else {
                         Object fieldsValue = getObjectValueByField(fieldToCheck, model);
-
                         if (fieldsValue.equals(value)) {
                             result.add(model);
                         }
-
-                    } catch (NoSuchFieldException e) {
-
-                        e.printStackTrace();
-                    } catch (SecurityException e) {
-
-                        e.printStackTrace();
                     }
+                } catch (NoSuchFieldException e) {
+                    e.printStackTrace();
+                } catch (SecurityException e) {
+                    e.printStackTrace();
                 }
-                return result;
             }
-
+            return result;
         }
         return null;
-    }
-
-    @Override
-    public boolean update(T t) {
-        return false;
     }
 
     protected Object getObjectValueByField(Field field, Object o) {
@@ -118,12 +151,13 @@ public abstract class BaseRepository<T> implements IBaseRepository<T> {
 
         return null;
     }
-    protected boolean writeCollectionToJsonFile(Collection collection){
+
+    protected boolean writeCollectionToJsonFile(Collection collection) {
         boolean wroten = false;
         File file = new File(getClass().getClassLoader().getResource(this.model.getSimpleName().toLowerCase() + ".json").getFile());
         Jsonb jsonb = JsonbBuilder.create();
         try {
-            if(file.exists()){
+            if (file.exists()) {
                 file.delete();
             }
             jsonb.toJson(collection, new FileWriter(file));
@@ -132,5 +166,18 @@ public abstract class BaseRepository<T> implements IBaseRepository<T> {
             e.printStackTrace();
         }
         return wroten;
+    }
+
+    protected boolean updateCollectionByFieldName(Field id, T t, List<T> listToUpdate) {
+        boolean updated = false;
+        Object value = getObjectValueByField(id, t);
+        T entry = findBy(id.getName(), value).stream().findFirst().get();
+        int index = listToUpdate.indexOf(entry);
+        if (index > 0) {
+            listToUpdate.set(index, t);
+            updated = writeCollectionToJsonFile(listToUpdate);
+        }
+
+        return updated;
     }
 }
