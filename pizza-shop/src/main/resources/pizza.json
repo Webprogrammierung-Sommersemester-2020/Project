@@ -18,10 +18,8 @@
 
             }
         ],
-        "ingredients": [{
-                "name": "Kaese",
-                "price": 0.5
-            },
+        "ingredients": [
+
             {
                 "name": "Tomate",
                 "price": 0.5
@@ -90,13 +88,8 @@
                 "size": 20.55,
                 "price": 5.00
 
-            },
-            {
-                "name": "big",
-                "size": 30.55,
-                "price": 5.00
-
             }
+
         ],
         "ingredients": [{
                 "name": "Kaese",
