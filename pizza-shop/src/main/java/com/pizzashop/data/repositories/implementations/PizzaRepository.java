@@ -50,7 +50,7 @@ public class PizzaRepository extends BaseRepository<Pizza> implements IPizzaRepo
 
                         Collection fieldsValues = (Collection) getObjectValueByField(fieldToCheck, pizza);
 
-                        for (var fieldValue : fieldsValues) {
+                        for (Object fieldValue : fieldsValues) {
                             Field[] fields = fieldValue.getClass().getDeclaredFields();
                             var results = Arrays.stream(fields).filter(f -> getObjectValueByField(f, fieldValue).equals(value));
 

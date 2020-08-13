@@ -108,7 +108,7 @@ public abstract class BaseRepository<T> implements IBaseRepository<T> {
                     if (Collection.class.isAssignableFrom(fieldToCheck.getType())) {
                         Collection fieldsValues = (Collection) getObjectValueByField(fieldToCheck, model);
 
-                        for (var fieldValue : fieldsValues) {
+                        for (Object fieldValue : fieldsValues) {
                             Field[] fields = fieldValue.getClass().getDeclaredFields();
                             var results = Arrays.stream(fields).filter(f -> getObjectValueByField(f, fieldValue).equals(value));
 
