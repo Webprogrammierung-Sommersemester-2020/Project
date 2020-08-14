@@ -1,4 +1,4 @@
-package com.pizzashop.data.repositories.implementations;
+package com.pizzashop.data.repositories;
 
 import com.pizzashop.data.models.Order;
 import com.pizzashop.data.repositories.IBaseRepository;
