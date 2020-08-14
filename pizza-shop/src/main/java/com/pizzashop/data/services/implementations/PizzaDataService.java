@@ -4,6 +4,7 @@ import com.pizzashop.data.models.Pizza;
 import com.pizzashop.data.repositories.IPizzaRepository;
 import com.pizzashop.data.services.IPizzaDataService;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,17 +29,9 @@ public class PizzaDataService implements IPizzaDataService {
 
         return pizza.isPresent() ? pizza.get() : null;
     }
-
-    @Override
-    public List<Pizza> getPizzasContainsIngredient(String ingredient) {
-        List<Pizza> pizzas = repository.findBy("ingredients", ingredient);
-        return (pizzas != null) ? pizzas : null;
-    }
-
-    @Override
-    public List<Pizza> getPizzasContainsSize(String sizeName) {
-        List<Pizza> pizzas = repository.findBy("sizes", sizeName);
-        return (pizzas != null) ? pizzas : null;
+    public List<Pizza> getPizzasBy(String parameter, String value){
+        List<Pizza> result = repository.findBy(parameter, value );
+        return result.isEmpty()? Collections.emptyList() : result;
     }
 
     @Override
