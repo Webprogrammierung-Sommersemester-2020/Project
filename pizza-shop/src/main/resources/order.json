@@ -1,0 +1,55 @@
+[
+  {
+    "id":1,
+    "user":{
+      "userId":1,
+      "userName":"john@doe",
+      "password":"1234",
+      "email":"john@doe.com",
+      "address":{}
+    },
+    "orderDate":"",
+    "pizzas":[
+
+      {
+        "name": "SuperPizza",
+        "sizes": [{
+          "name": "small",
+          "size": 10.55,
+          "price": 5.00
+        },
+          {
+            "name": "medium",
+            "size": 20.55,
+            "price": 5.00
+
+          },
+          {
+            "name": "big",
+            "size": 30.55,
+            "price": 5.00
+
+          }
+        ],
+        "ingredients": [
+
+          {
+            "name": "Tomate",
+            "price": 0.5
+          },
+          {
+            "name": "Spinat",
+            "price": 0.5
+          },
+          {
+            "name": "Salami",
+            "price": 0.5
+          }
+        ],
+
+        "price": 14.99
+      }
+
+    ]
+  }
+]
