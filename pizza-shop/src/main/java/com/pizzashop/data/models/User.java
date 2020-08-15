@@ -6,6 +6,7 @@ public class User{
     private String userName;
     private String email;
     private String password;
+    private String role;
     private Address address;
 
     public User() {
@@ -63,6 +64,14 @@ public class User{
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     @Override
     public int hashCode() {
