@@ -1,18 +1,21 @@
 package com.pizzashop.data.models;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 public class Order {
     private int id;
     private User user;
-    private Date orderDate;
+    private String date;
+    private String time;
     List<Pizza> pizzas = new ArrayList<>();
 
     public Order() {
-
     }
 
     public int getId() {
@@ -31,20 +34,28 @@ public class Order {
         this.user = user;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
     public List<Pizza> getPizzas() {
         return pizzas;
     }
 
     public void setPizzas(List<Pizza> pizzas) {
         this.pizzas = pizzas;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     @Override
@@ -54,11 +65,12 @@ public class Order {
         Order order = (Order) o;
         return id == order.id &&
                 Objects.equals(user, order.user) &&
-                Objects.equals(orderDate, order.orderDate);
+                Objects.equals(date, order.date) &&
+                Objects.equals(time, order.time);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, orderDate);
+        return Objects.hash(id, user, date, time);
     }
 }
