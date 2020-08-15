@@ -23,6 +23,7 @@ public class PizzaController {
     }
 
     @GET
+    @Path("/get/all")
     public Response getAllPizzas(){
         List<Pizza>  pizzas = dataService.getAllPizzas();
         if(pizzas.isEmpty()){
@@ -32,7 +33,7 @@ public class PizzaController {
     }
 
     @GET
-    @Path("/name")
+    @Path("/get/name")
     public Response getPizzaByName(@QueryParam("name") final String name){
         Pizza pizza = dataService.getPizzaByName(name);
         if (pizza != null){
@@ -42,7 +43,7 @@ public class PizzaController {
     }
 
     @GET
-    @Path("/find/{parameter}")
+    @Path("/get/{parameter}")
     public Response getPizzasByIngredient(@PathParam("parameter") final String parameter,@QueryParam("value") String value){
         List<Pizza> pizzas = dataService.getPizzasBy(parameter, value);
         if (!pizzas.isEmpty()){
@@ -53,6 +54,7 @@ public class PizzaController {
 
 
     @POST
+    @Path("/add")
     public Response addNewPizza(Pizza pizza){
 
         if(dataService.addNewPizza(pizza)){
@@ -62,6 +64,7 @@ public class PizzaController {
     }
 
     @PUT
+    @Path("/update")
     public Response updatePizza(Pizza pizza){
 
         if(dataService.getPizzaByName(pizza.getName()) == null){

@@ -26,6 +26,7 @@ public class OrderController {
     }
 
     @GET
+    @Path("/get/all")
     public Response getAllOrders(){
         List<Order> orders = dataService.getAllOrders();
         if(orders.isEmpty()){
@@ -35,7 +36,7 @@ public class OrderController {
     }
 
     @GET
-    @Path("/{id}")
+    @Path("/get/{id}")
     public Response getOrderById(@PathParam("id") int id){
         Order order = dataService.getOrderById(id);
         if(order == null){
@@ -45,7 +46,7 @@ public class OrderController {
     }
 
     @GET
-    @Path("/user")
+    @Path("/get/user")
     public Response getOrdersByUser(@QueryParam("id") int id){
         List<Order> orders = dataService.getOrdersByUser(id);
         if(orders.isEmpty()){
@@ -58,6 +59,7 @@ public class OrderController {
     }
 
     @POST
+    @Path("/create")
     public Response createOrder(Order order){
         if(dataService.createOrder(order)){
             return Response.status(Response.Status.CREATED).build();
@@ -66,6 +68,7 @@ public class OrderController {
     }
 
     @PUT
+    @Path("/update")
     public Response updateOrder(Order order){
         if(dataService.getOrderById(order.getId()) == null){
             return Response.status(Response.Status.NOT_FOUND).build();

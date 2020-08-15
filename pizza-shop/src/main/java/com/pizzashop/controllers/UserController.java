@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @GET
-    @Path("/all")
+    @Path("/get/all")
     public Response getAllUsers(){
         List<User> users = dataService.getAllUsers();
         if (users.isEmpty()){
@@ -31,7 +31,7 @@ public class UserController {
         return Response.ok(users).build();
     }
     @GET
-    @Path("/{id}")
+    @Path("/get/{id}")
     public Response getUserById(@PathParam("id") int id){
         User user = dataService.getUserById(id);
         if (user != null){
@@ -49,6 +49,7 @@ public class UserController {
     }
 
     @PUT
+    @Path("/update")
     public Response updateUser(User user){
         if(dataService.getUserById(user.getUserId()) != null){
             if(dataService.updateUser(user)){
