@@ -22,7 +22,7 @@ public class UserDataService implements IUserDataService {
 
     @Override
     public User getUserById(int id) {
-        Optional<User> optionalUser = repository.findBy("id", id).stream().findFirst();
+        Optional<User> optionalUser = repository.findBy("userId", id).stream().findFirst();
         return  optionalUser.isPresent() ? optionalUser.get() : null;
     }
 

@@ -34,7 +34,7 @@ public class UserRepository extends BaseRepository<User> implements IUserReposit
     @Override
     public List<User> findBy(String propertyName, Object value) {
 
-        Optional<Field> searchedField = Arrays.stream(Order.class.getDeclaredFields())
+        Optional<Field> searchedField = Arrays.stream(User.class.getDeclaredFields())
                 .filter(f -> f.getName().toLowerCase().equals(propertyName.toLowerCase())).findFirst();
 
         if (searchedField.isPresent()) {
