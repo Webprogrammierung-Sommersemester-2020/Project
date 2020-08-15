@@ -22,7 +22,7 @@ public class UserRepository extends BaseRepository<User> implements IUserReposit
             InputStream inputStream = getClass().getClassLoader()
                     .getResourceAsStream(User.class.getSimpleName().toLowerCase() + ".json");
             Jsonb json = JsonbBuilder.create();
-            entries = json.fromJson(inputStream, new ArrayList<Order>() {
+            entries = json.fromJson(inputStream, new ArrayList<User>() {
             }.getClass().getGenericSuperclass());
 
         } catch (Exception e) {
