@@ -8,6 +8,7 @@ import java.util.List;
 public interface IOrderDataService {
     public List<Order> getAllOrders();
     public Order getOrderById(int id);
+    public List<Order> getOrdersByUser(User user);
     public boolean createOrder(Order order);
     public boolean deleteOrder(Order order);
     public boolean updateOrder(Order order);

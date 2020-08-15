@@ -1,6 +1,7 @@
 package com.pizzashop.data.services.implementations;
 
 import com.pizzashop.data.models.Order;
+import com.pizzashop.data.models.User;
 import com.pizzashop.data.repositories.IOrderRepository;
 import com.pizzashop.data.services.IOrderDataService;
 
@@ -24,6 +25,12 @@ public class OrderDataService implements IOrderDataService {
     public Order getOrderById(int id) {
         Optional<Order> order = repository.findBy("id", id).stream().findFirst();
         return order.isPresent() ? order.get() : null;
+    }
+
+    @Override
+    public List<Order> getOrdersByUser(User user) {
+        List<Order> orders = repository.findBy("user", user.getUserId());
+        return orders.isEmpty() ? null : orders;
     }
 
     @Override
