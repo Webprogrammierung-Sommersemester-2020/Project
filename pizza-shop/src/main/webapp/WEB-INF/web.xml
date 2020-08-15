@@ -4,4 +4,24 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Order Protection</web-resource-name>
+      <url-pattern>/api/order/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint><role-name>user</role-name></auth-constraint>
+  </security-constraint>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>User Protection</web-resource-name>
+      <url-pattern>/api/user/delete/*</url-pattern>
+      <url-pattern>/api/user/get/*</url-pattern>
+      <url-pattern>/api/user/update/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint><role-name>admin</role-name></auth-constraint>
+  </security-constraint>
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name>authorized-users</realm-name>
+  </login-config>
 </web-app>
