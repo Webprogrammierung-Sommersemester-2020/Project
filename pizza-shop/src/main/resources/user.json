@@ -2,8 +2,21 @@
   "userId": 1,
   "userName": "johnDoe",
   "email":"john@doe.com",
-  "password":"123456",
+  "password":"Pizz@-Sh0p",
   "role": "user",
-  "address":{}
-
-}]
+  "address":{
+    "street": "Langgasse",
+    "number": 43,
+    "sufix": "a",
+    "zipCode": "54321",
+    "city": "Simmern"
+  }
+},
+  {
+    "userId": 2,
+    "userName": "pizza@fan",
+    "email":"p.fan@pizza-shop.com",
+    "password":"P@ssW0rd!",
+    "role": "admin",
+    "address":{}
+  }]
