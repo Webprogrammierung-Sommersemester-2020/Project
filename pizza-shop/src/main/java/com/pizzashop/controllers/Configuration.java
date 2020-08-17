@@ -1,7 +1,7 @@
 package com.pizzashop.controllers;
 
 
-import com.pizzashop.security.AuthorizationFilter;
+import com.pizzashop.security.filters.AuthorizationFilter;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -15,6 +15,8 @@ public class Configuration extends Application {
         final Set<Class<?>> classes = new HashSet<>();
         classes.add(AuthController.class);
         classes.add(OrderController.class);
+        classes.add(PizzaController.class);
+        classes.add(UserController.class);
         classes.add(AuthorizationFilter.class);
         return classes;
     }
