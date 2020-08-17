@@ -10,4 +10,6 @@ public interface IUserDataService {
     public boolean createUser(User user);
     public boolean deleteUser(User user);
     public boolean updateUser(User user);
+
+    public User getUserByUserName(String userName);
 }

@@ -27,8 +27,12 @@ public class UserDataService implements IUserDataService {
     }
 
     @Override
+    public User getUserByUserName(String userName){
+        Optional<User> user = getAllUsers().stream().filter(u->u.getUserName().equals(userName)).findFirst();
+        return user.isPresent() ? user.get() : null;
+    }
+    @Override
     public boolean createUser(User user) {
-        // TODO: later -> Password hashing and security implementation...
         Optional<Integer> lastGeneratedId = repository.getAll().stream().map(o->o.getUserId()).max(Integer::compareTo);
         if(lastGeneratedId.isPresent()){
             user.setUserId(lastGeneratedId.get()+1);
