@@ -1,4 +1,4 @@
-package com.pizzashop.security;
+package com.pizzashop.security.filters;
 
 
 import com.pizzashop.security.interfaces.Secured;
@@ -44,7 +44,8 @@ public class AuthorizationFilter implements ContainerRequestFilter {
         String token = authorizationHeader.substring("Bearer".length()).trim();
 
         try {
-            Role userRole = Role.valueOf(TokenService.validateTokenAndReturnRole(token, "123456"));
+            String role = TokenService.validateTokenAndReturnRole(token);
+            Role userRole = Role.valueOf(role.toUpperCase());
 
             List<Role> classRoles = extractRoles(resourceInfo.getResourceClass());
             List<Role> methodRoles = extractRoles(resourceInfo.getResourceMethod());
