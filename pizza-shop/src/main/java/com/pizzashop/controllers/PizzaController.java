@@ -4,6 +4,8 @@ import com.pizzashop.data.models.Pizza;
 import com.pizzashop.data.repositories.implementations.PizzaRepository;
 import com.pizzashop.data.services.IPizzaDataService;
 import com.pizzashop.data.services.implementations.PizzaDataService;
+import com.pizzashop.security.interfaces.Secured;
+import com.pizzashop.security.modells.Role;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -54,6 +56,7 @@ public class PizzaController {
 
 
     @POST
+    @Secured({Role.ADMIN})
     @Path("/add")
     public Response addNewPizza(Pizza pizza){
 
@@ -64,6 +67,7 @@ public class PizzaController {
     }
 
     @PUT
+    @Secured({Role.ADMIN})
     @Path("/update")
     public Response updatePizza(Pizza pizza){
 
@@ -77,6 +81,7 @@ public class PizzaController {
     }
 
     @DELETE
+    @Secured({Role.ADMIN})
     @Path("/delete")
     public Response deletePizzaByName(@QueryParam("name") final String name){
 

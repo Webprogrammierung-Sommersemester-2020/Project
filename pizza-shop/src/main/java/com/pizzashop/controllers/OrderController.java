@@ -23,7 +23,7 @@ public class OrderController {
     }
 
     @GET
-    @Secured({Role.USER})
+    @Secured({Role.ADMIN})
     @Path("/get/all")
     public Response getAllOrders() {
         List<Order> orders = dataService.getAllOrders();
@@ -34,6 +34,7 @@ public class OrderController {
     }
 
     @GET
+    @Secured({Role.ADMIN})
     @Path("/get/{id}")
     public Response getOrderById(@PathParam("id") int id) {
         Order order = dataService.getOrderById(id);
@@ -44,6 +45,7 @@ public class OrderController {
     }
 
     @GET
+    @Secured({Role.USER, Role.ADMIN})
     @Path("/get/user")
     public Response getOrdersByUser(@QueryParam("id") int id) {
         List<Order> orders = dataService.getOrdersByUser(id);
@@ -56,6 +58,7 @@ public class OrderController {
     }
 
     @POST
+    @Secured({Role.USER, Role.ADMIN})
     @Path("/create")
     public Response createOrder(Order order) {
         if (dataService.createOrder(order)) {
@@ -65,6 +68,7 @@ public class OrderController {
     }
 
     @PUT
+    @Secured({Role.ADMIN})
     @Path("/update")
     public Response updateOrder(Order order) {
         if (dataService.getOrderById(order.getId()) == null) {
@@ -77,6 +81,7 @@ public class OrderController {
     }
 
     @DELETE
+    @Secured({Role.ADMIN})
     @Path("/delete")
     public Response deleteOrder(Order order) {
         if (dataService.getOrderById(order.getId()) == null) {
@@ -89,6 +94,7 @@ public class OrderController {
     }
 
     @DELETE
+    @Secured({Role.ADMIN})
     @Path("/delete/{id}")
     public Response deleteOrderById(@PathParam("id") int id) {
         if (dataService.getOrderById(id) == null) {
