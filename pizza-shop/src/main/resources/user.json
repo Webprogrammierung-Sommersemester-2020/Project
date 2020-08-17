@@ -7,7 +7,7 @@
   "address":{
     "street": "Langgasse",
     "number": 43,
-    "sufix": "a",
+    "suffix": "a",
     "zipCode": "54321",
     "city": "Simmern"
   }
