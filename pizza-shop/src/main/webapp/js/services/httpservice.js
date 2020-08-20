@@ -12,7 +12,7 @@ export default class HttpService {
                 }
             }
             if ('GET' === method.toUpperCase()) {
-                httpRequest.onload = () => {
+                httpRequest.onreadystatechange = () => {
                     if ((httpRequest.status === 200) && (httpRequest.readyState === httpRequest.DONE))
                         resolve(httpRequest.responseText);
                 };
