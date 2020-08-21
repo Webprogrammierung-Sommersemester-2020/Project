@@ -1,114 +1,161 @@
-[{
-        "name": "margaritta",
-        "sizes": [{
-                "name": "small",
-                "size": 10.55,
-                "price": 5.00
-            },
-            {
-                "name": "medium",
-                "size": 20.55,
-                "price": 5.00
-
-            },
-            {
-                "name": "big",
-                "size": 30.55,
-                "price": 5.00
-
-            }
-        ],
-        "ingredients": [
-
-            {
-                "name": "Tomate",
-                "price": 0.5
-            },
-            {
-                "name": "Spinat",
-                "price": 0.5
-            },
-            {
-                "name": "Salami",
-                "price": 0.5
-            }
-        ],
-
-        "price": 14.99
-    },
-    {
-        "name": "peperony",
-        "sizes": [{
-                "name": "small",
-                "size": 10.55,
-                "price": 5.00
-            },
-            {
-                "name": "medium",
-                "size": 20.55,
-                "price": 5.00
-
-            },
-            {
-                "name": "big",
-                "size": 30.55,
-                "price": 5.00
-
-            }
-        ],
-        "ingredients": [{
-                "name": "Kaese",
-                "price": 0.5
-            },
-            {
-                "name": "Tomate",
-                "price": 0.5
-            },
-            {
-                "name": "Spinat",
-                "price": 0.5
-            },
-            {
-                "name": "Salami",
-                "price": 0.5
-            }
-        ],
-
-        "price": 14.99
-    },
-    {
-        "name": "custom",
-        "sizes": [{
-                "name": "small",
-                "size": 10.55,
-                "price": 5.00
-            },
-            {
-                "name": "medium",
-                "size": 20.55,
-                "price": 5.00
-
-            }
-
-        ],
-        "ingredients": [{
-                "name": "Kaese",
-                "price": 0.5
-            },
-            {
-                "name": "Tomate",
-                "price": 0.5
-            },
-            {
-                "name": "Spinat",
-                "price": 0.5
-            },
-            {
-                "name": "Salami",
-                "price": 0.5
-            }
-        ],
-
-        "price": 14.99
-    }
+[
+  {
+    "name": "Margherita",
+    "sizes": [
+      {
+        "name": "small",
+        "size": 10.55,
+        "price": 5.00
+      },
+      {
+        "name": "medium",
+        "size": 20.55,
+        "price": 10.0
+      },
+      {
+        "name": "big",
+        "size": 30.55,
+        "price": 15.00
+      }
+    ],
+    "ingredients": [
+      {
+        "name": "Tomate",
+        "price": 0.0
+      },
+      {
+        "name": "Bueffelmozzarella",
+        "price": 0.0
+      },
+      {
+        "name": "Basilikum",
+        "price": 0.0
+      }
+    ],
+    "price": 10.99
+  },
+  {
+    "name": "Pepperoni",
+    "sizes": [
+      {
+        "name": "small",
+        "size": 10.55,
+        "price": 5.00
+      },
+      {
+        "name": "medium",
+        "size": 20.55,
+        "price": 5.00
+      },
+      {
+        "name": "big",
+        "size": 30.55,
+        "price": 5.00
+      }
+    ],
+    "ingredients": [
+      {
+        "name": "Champignons",
+        "price": 0.0
+      },
+      {
+        "name": "Scheiben Peperoni",
+        "price": 0.0
+      },
+      {
+        "name": "Zwiebel",
+        "price": 0.0
+      },
+      {
+        "name": "Mozzarella",
+        "price": 0.0
+      }
+    ],
+    "price": 14.99
+  },
+  {
+    "name": "Spinat",
+    "sizes": [
+      {
+        "name": "small",
+        "size": 10.55,
+        "price": 5.00
+      },
+      {
+        "name": "medium",
+        "size": 20.55,
+        "price": 5.00
+      }
+    ],
+    "ingredients": [
+      {
+        "name": "Tomaten",
+        "price": 0.0
+      },
+      {
+        "name": "Tomate",
+        "price": 0.0
+      },
+      {
+        "name": "Zwiebel",
+        "price": 0.0
+      },
+      {
+        "name": "Knoblauchzehe",
+        "price": 0.0
+      },
+      {
+        "name": "Schafskaese",
+        "price": 0.0
+      }
+    ],
+    "price": 24.99
+  },
+  {
+    "name": "Meeresfruechte",
+    "sizes": [
+      {
+        "name": "small",
+        "size": 10.55,
+        "price": 5.00
+      },
+      {
+        "name": "medium",
+        "size": 20.55,
+        "price": 5.00
+      },
+      {
+        "name": "big",
+        "size": 30.55,
+        "price": 5.00
+      }
+    ],
+    "ingredients": [
+      {
+        "name": "Thymian",
+        "price": 0.0
+      },
+      {
+        "name": "Garnelen",
+        "price": 0.0
+      },
+      {
+        "name": "Tomatenstuecke",
+        "price": 0.0
+      },
+      {
+        "name": "Dill",
+        "price": 0.0
+      },
+      {
+        "name": "Meeresfruechte",
+        "price": 0.0
+      },
+      {
+        "name": "Tabasco",
+        "price": 0.0
+      }
+    ],
+    "price": 14.99
+  }
 ]
