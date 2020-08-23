@@ -1,13 +1,40 @@
-import Pizza from "./models/pizza.js";
-
-let BASE_PRICE = 15.00;
+const BASE_PRICE = 15.00;
 const INGREDIENT_PRICE = 0.50;
 
 let pizza = {
     name: "Generated Pizza",
-    ingredients: [],
+    ingredients: [
+        {
+            name: "Kaese",
+            price: 0.0
+        },
+        {
+            name: "Tomate",
+            price: 0.0
+        },
+        {
+            name: "Paprika",
+            price: 0.5
+        },
+        {
+            name: "Pilze",
+            price: 0.5
+        },
+        {
+            name: "Gruene Pfeffer",
+            price: 0.5
+        },
+        {
+            name: "Weisse Sosse",
+            price: 0.5
+        },
+        {
+            name: "Gluten-frei",
+            price: 0.5
+        },
+    ],
     sizes: [],
-    price: 15.0
+    price: 17.50
 }
 
 let pizzas = new Array();
@@ -78,21 +105,34 @@ function calcPrice() {
     if (buttonPepperonni.classList.contains("active")) {
         addIngredientWithPriceToPizza("Paprika", pricePerIngredient);
     }
+    else {
+        deleteIngredientFromPizza("Paprika")
+    }
 
     if (buttonMushrooms.classList.contains("active")) {
         addIngredientWithPriceToPizza("Pilze", pricePerIngredient);
+    }
+    else {
+        deleteIngredientFromPizza("Pilze")
     }
 
     if (buttonGreenPeppers.classList.contains("active")) {
         addIngredientWithPriceToPizza("Gruene Pfeffer", pricePerIngredient);
     }
-
+    else {
+        deleteIngredientFromPizza("Gruene Pfeffer")
+    }
     if (buttonSauce.classList.contains("active")) {
         addIngredientWithPriceToPizza("Weisse Sosse", pricePerIngredient);
     }
-
+    else {
+        deleteIngredientFromPizza("Weisse Sosse")
+    }
     if (buttonCrust.classList.contains("active")) {
         addIngredientWithPriceToPizza("Gluten-frei", pricePerIngredient);
+    }
+    else {
+        deleteIngredientFromPizza("Gluten-frei")
     }
     let priceElement = document.getElementById("totalPrice");
     priceElement.innerHTML = pizza.price;
@@ -101,4 +141,18 @@ function calcPrice() {
 function addIngredientWithPriceToPizza(ingredient, pricePerIngredient) {
     pizza.ingredients.push({name: ingredient, price: pricePerIngredient});
     pizza.price += pricePerIngredient;
+}
+
+function deleteIngredientFromPizza(ingredient){
+    let component = pizza.ingredients.find(i=>i.name === ingredient);
+    if(component){
+        let index = pizza.ingredients.indexOf(component);
+        pizza.ingredients.splice(index);
+    }
+}
+
+function addPizzaToList() {
+    pizzas.push(pizza)
+    const pizzasJson = JSON.stringify(pizzas)
+    window.sessionStorage.setItem("pizzas",pizzasJson);
 }
