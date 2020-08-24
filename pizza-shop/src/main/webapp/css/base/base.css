@@ -1,3 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 html {
     font-size: 10px;
 }
@@ -10,26 +16,29 @@ body:not(header) {
 }
 
 .row {
-    max-width: 95%;
+    max-width: 75%;
     margin: 0 auto;
 }
 
-.row:not(:last-child) {
-    margin-bottom: 2rem;
+.row:not(:last-child){
+    margin-bottom: 30rem;
+}
+
+.row::after{
+    content: "";
+    display: table;
+    clear: both;
 }
 
 [class^="col-"] {
-    margin-bottom: 2rem;
     float: left;
 }
-
 [class^="col-"]:not(:last-child) {
     margin-right: 2rem;
 }
 
 .col-1-of-2 {
     width: calc((100% - 2rem) / 2);
-
 }
 
 .col-1-of-3 {
@@ -77,6 +86,17 @@ h3 {
     letter-spacing: 2px;
     transition: all .2s;
     margin-bottom: 1rem;
+}
+a {
+    font-size: 1.5rem;
+    color: #3b3b3d;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid #3b3b3d;
+    padding: 3px;
+    transition: all .2s;
+    backface-visibility: hidden;
+    margin-left: 3rem;
 }
 
 a:hover {
