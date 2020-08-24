@@ -1,13 +1,17 @@
 @import "base/base.css";
 
-.order {
-    width: 50%;
+.order-container{
     margin: 0 auto;
+}
+.order {
+    width: 75%;
+    margin:0 auto;
     position: absolute;
     box-shadow: 0 3rem 6rem rgba(0, 0, 0, .1);
     background-color: whitesmoke;
     border-radius: 3px;
-    padding: 1rem;
+    padding: 3rem;
+    padding-left: 9rem;
     font-size: 1.6rem;
 }
 
@@ -21,7 +25,7 @@
     shape-outside: circle(50% at 50% 50%);
     -webkit-clip-path: circle(50% at 50% 50%);
     clip-path: circle(50% at 50% 50%);
-    transform: translateX(1rem);
+    transform: translateX(-3rem);
 }
 
 img{
