@@ -8,7 +8,7 @@ window.onload = () => {
      .then(jsonString=>{
          pizzas = JSON.parse(jsonString);
          pizzas.forEach((pizza)=>{
-             PizzaService.addPizzaElementToPage(pizza, "Zum Warenkorb Hinzu&uuml;gen");
+             PizzaService.addPizzaElementToPage(pizza, "Zum Warenkorb Hinzuf&uuml;gen");
              let addToCardButton = document.getElementById("eventFor"+pizza.name);
              addToCardButton.onclick = () =>{
                  PizzaService.addPizzaToList(pizza);
