@@ -6,12 +6,37 @@
     <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
-
-
-<h2>Einkaufswagen</h2>
-
+<div class="header">
+    <h2>Einkaufswagen</h2>
+</div>
 <div class="order-container">
 </div>
+<div class="purchase">
+    <table id="purchaseTable">
+        <thead>
+        <th><b>Name</b></th>
+        <th><b>Preis</b></th>
+        </thead>
+        <tbody id="purchaseTableBody">
+
+        </tbody>
+        <tfoot>
+        <tr>
+            <td>Insgesamt:</td>
+            <td id="total"></td>
+        </tr>
+        <tr>
+            <td class="footer-td">
+                <a href="#">Bestellen</a>
+            </td>
+            <td class="footer-td">
+                <a href="#">Abbrechen</a>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
 
 <script src="js/cart.js" type="module"></script>
 </body>
