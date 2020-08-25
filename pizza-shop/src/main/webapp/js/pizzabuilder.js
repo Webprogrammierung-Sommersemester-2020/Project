@@ -2,7 +2,7 @@ const BASE_PRICE = 15.00;
 const INGREDIENT_PRICE = 0.50;
 
 let pizza = {
-    name: "Generated Pizza",
+    name: "Generierte Pizza",
     ingredients: [
         {
             name: "Kaese",
@@ -152,7 +152,18 @@ function deleteIngredientFromPizza(ingredient){
 }
 
 function addPizzaToList() {
-    pizzas.push(pizza)
+    let localPizza = {
+        name: pizza.name,
+        ingredients: pizza.ingredients.map((ingredient)=>{
+            return ingredient;
+        }),
+        sizes: pizza.sizes.map((size)=>{
+            return size;
+        }),
+        price: pizza.price
+    }
+    pizzas.push(localPizza);
     const pizzasJson = JSON.stringify(pizzas)
     window.sessionStorage.setItem("pizzas",pizzasJson);
+    console.log(pizzas);
 }
