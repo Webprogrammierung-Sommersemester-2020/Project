@@ -1,11 +1,13 @@
 @import "base/base.css";
 
-.order-container{
+.order-container {
     margin: 0 auto;
+    position: relative;
 }
+
 .order {
-    width: 75%;
-    margin:0 auto;
+    width: 60%;
+    margin: 0 auto;
     position: absolute;
     box-shadow: 0 3rem 6rem rgba(0, 0, 0, .1);
     background-color: whitesmoke;
@@ -15,7 +17,7 @@
     font-size: 1.6rem;
 }
 
-.order__shape{
+.order__shape {
     width: 20rem;
     height: 20rem;
     position: relative;
@@ -28,6 +30,28 @@
     transform: translateX(-3rem);
 }
 
-img{
+img {
     height: 100%;
+}
+
+.header {
+    text-align: center;
+}
+
+.purchase {
+    position: fixed;
+    padding: 2em;
+    right: 10%;
+    top: 10%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.6rem;
+}
+
+.footer-td{
+    border-bottom: none;
 }
