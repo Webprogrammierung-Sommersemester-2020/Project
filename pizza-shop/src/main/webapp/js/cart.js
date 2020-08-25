@@ -5,6 +5,7 @@ pizzas.forEach((pizza) => {
     createOrderItemElement(pizza);
 });
 
+fillPurchaseTable(pizzas);
 function createOrderItemElement(pizza) {
     let name = pizza.name;
     let ingredients = "";
@@ -12,7 +13,7 @@ function createOrderItemElement(pizza) {
     let pictureName = ""
     let sizes = "";
 
-    if(pizza.name.toLowerCase() === "Generated pizza".toLowerCase()){
+    if(pizza.name.toLowerCase() === "Generierte pizza".toLowerCase()){
         pictureName = "Custom";
     }
     else {
@@ -41,7 +42,7 @@ function createOrderItemElement(pizza) {
     h3Tag.innerHTML = name;
 
     let paragraphTag = document.createElement("p");
-    paragraphTag.innerHTML = ingredients + "<h4>Gesamtpreis: " + price + " &euro; <a href='#'>L&ouml;schen ?</a></h4><br>";
+    paragraphTag.innerHTML = ingredients + "<h4>Gesamtpreis: " + price + " &euro; <a href='#' id='deleteBtn"+name+"' >L&ouml;schen ?</a></h4><br>";
 
     let orderTextContainer = document.createElement("div");
     orderTextContainer.className = "order__text";
@@ -53,5 +54,31 @@ function createOrderItemElement(pizza) {
     rowDivContainer.appendChild(orderDivContainer);
     orderContentContainer.appendChild(rowDivContainer);
 
-    console.log(orderContentContainer);
+    let deleteButton = document.getElementById("deleteBtn"+name);
+    deleteButton.onclick = () =>{
+        deletePizzaFromList(name);
+    }
+}
+
+function fillPurchaseTable(pizzas){
+    let totalPrice = 0;
+    let purchaseTableBody = document.getElementById("purchaseTableBody");
+    let total = document.getElementById("total");
+    let bodyContent = "";
+
+    for(let i = 0; i<pizzas.length; i++){
+        bodyContent += "<tr><td>"+pizzas[i].name+"</td>"+"<td>"+pizzas[i].price+" &euro;"+"</td></tr>"
+        totalPrice += pizzas[i].price;
+    }
+
+    purchaseTableBody.innerHTML = bodyContent;
+    total.innerHTML = totalPrice+" &euro;"
+
+}
+function deletePizzaFromList(pizzaName){
+    const pizzaEntry = pizzas.find(pizza=>pizza.name === pizzaName);
+    const index = pizzas.indexOf(pizzaEntry);
+    pizzas.splice(index,1);
+    window.sessionStorage.setItem("pizzas",JSON.stringify(pizzas));
+    window.location.reload();
 }
