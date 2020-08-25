@@ -1,3 +1,5 @@
+import PizzaService from "./services/pizzaservice.js";
+
 const BASE_PRICE = 15.00;
 const INGREDIENT_PRICE = 0.50;
 
@@ -17,7 +19,7 @@ let pizza = {
             price: 0.5
         },
         {
-            name: "Pilze",
+            name: "Champignons",
             price: 0.5
         },
         {
@@ -38,6 +40,7 @@ let pizza = {
 }
 
 let pizzas = new Array();
+let pizzaAddButton = document.getElementById("addPizza");
 
 let buttonPepperonni = document.querySelector(".btn-pepperonni");
 let buttonMushrooms = document.querySelector(".btn-mushrooms");
@@ -45,6 +48,9 @@ let buttonGreenPeppers = document.querySelector(".btn-green-peppers");
 let buttonSauce = document.querySelector(".btn-sauce");
 let buttonCrust = document.querySelector(".btn-crust");
 
+pizzaAddButton.onclick = () => {
+    PizzaService.addPizzaToList(pizza);
+}
 buttonPepperonni.addEventListener("click", () => {
     buttonPepperonni.classList.toggle("active");
     toggleVisibilityOfElementChildren("#peppers", "pep")
@@ -139,8 +145,12 @@ function calcPrice() {
 }
 
 function addIngredientWithPriceToPizza(ingredient, pricePerIngredient) {
-    pizza.ingredients.push({name: ingredient, price: pricePerIngredient});
-    pizza.price += pricePerIngredient;
+    let isPizzaContainsIngredient = pizza.ingredients.find(i=>i.name === ingredient);
+    if (!isPizzaContainsIngredient){
+        pizza.ingredients.push({name: ingredient, price: pricePerIngredient});
+        pizza.price += pricePerIngredient;
+    }
+
 }
 
 function deleteIngredientFromPizza(ingredient){
@@ -149,21 +159,4 @@ function deleteIngredientFromPizza(ingredient){
         let index = pizza.ingredients.indexOf(component);
         pizza.ingredients.splice(index);
     }
-}
-
-function addPizzaToList() {
-    let localPizza = {
-        name: pizza.name,
-        ingredients: pizza.ingredients.map((ingredient)=>{
-            return ingredient;
-        }),
-        sizes: pizza.sizes.map((size)=>{
-            return size;
-        }),
-        price: pizza.price
-    }
-    pizzas.push(localPizza);
-    const pizzasJson = JSON.stringify(pizzas)
-    window.sessionStorage.setItem("pizzas",pizzasJson);
-    console.log(pizzas);
 }
