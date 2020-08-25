@@ -19,6 +19,7 @@ export default class PizzaService {
 
         if(pizza.name.toLowerCase() === "Generierte pizza".toLowerCase()){
             pictureName = "Custom";
+            name="Custom"
         }
         else {
             pictureName = pizza.name;
@@ -84,10 +85,14 @@ export default class PizzaService {
     }
 
     static deletePizzaFromList(pizzaName){
-        const pizzaEntry = pizzas.find(pizza=>pizza.name === pizzaName);
-        const index = pizzas.indexOf(pizzaEntry);
-        pizzas.splice(index,1);
-        window.sessionStorage.setItem("pizzas",JSON.stringify(pizzas));
-        window.location.reload();
+        let pizzas = JSON.parse(window.sessionStorage.getItem("pizzas"))
+        if (pizzas){
+            const pizzaEntry = pizzas.find(pizza=>pizza.name === pizzaName);
+            const index = pizzas.indexOf(pizzaEntry);
+            pizzas.splice(index,1);
+            window.sessionStorage.setItem("pizzas",JSON.stringify(pizzas));
+            window.location.reload();
+        }
+        console.log("Session is empty or do not contains \"pizzas\" as item")
     }
 }
