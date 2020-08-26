@@ -7,6 +7,7 @@ import com.pizzashop.security.services.TokenService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -23,7 +24,7 @@ public class AuthController {
         this.userDataService = new UserDataService(new UserRepository());
     }
 
-    @POST
+    @GET
     @Path("/token")
     @Produces({MediaType.APPLICATION_JSON})
     public Response createTokenForAuthenticatedUser(@Context HttpServletRequest request) {
