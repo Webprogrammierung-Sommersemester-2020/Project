@@ -3,9 +3,9 @@ import AuthService from "./services/authservice.js";
 window.onload = () => {
     if (AuthService.isAuthorized()) {
         if (window.sessionStorage.getItem("pizzas")) {
-            window.location.href = "cart.html";
+            //window.location.href = "cart.html";
         } else {
-            window.history.back();
+            //window.history.back();
         }
     }
 
@@ -22,10 +22,12 @@ loginForm.addEventListener("submit", (event) => {
 
 function login() {
     if(AuthService.isAuthorized()){
-        if (window.sessionStorage.getItem("pizzas")) {
-            window.location.href = "cart.html";
-        } else {
-            window.history.back();
+        if(AuthService.setAuthTokenToSessionAs("auth")){
+            if (window.sessionStorage.getItem("pizzas")) {
+                window.location.href = "cart.html";
+            } else {
+                window.history.back();
+            }
         }
     }
     else if(!AuthService.isAuthorized()){
