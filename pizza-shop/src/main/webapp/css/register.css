@@ -1,0 +1,84 @@
+@import "base/base.css";
+
+.login {
+    background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.89) 0%, rgba(255, 255, 255, 0.89) 55%, transparent 45%), url("../img/Spinat.jpg");
+    background-size: 100%;
+    border-radius: 3px;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .2);
+    height: auto;
+}
+
+.login__form {
+    width: 50%;
+    padding: 4rem;
+}
+
+.form__group:not(:last-child) {
+    margin-bottom: 2rem;
+}
+
+.form__label {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-left: 1rem;
+    margin-top: .5rem;
+    display: block;
+    transition: all .3s;
+}
+
+.form__input {
+    font-size: 1.5rem;
+    padding: .5rem 1rem;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.502);
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 100%;
+    display: block;
+    transition: all .3s;
+}
+
+.form__input:placeholder-shown+.form__label {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-3rem);
+}
+
+.form__input:focus {
+    outline: none;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
+    border-bottom: 3px solid #3b3b3d;
+}
+
+.form__input:focus:invalid {
+    border-bottom: 3px solid #ff7730;
+}
+
+.btn {
+    font-size: 1.5rem;
+    background-color: transparent;
+    border: 0;
+    color: #3b3b3d;
+    display: inline-block;
+    text-decoration: none;
+    padding: 3px;
+    margin-right: 1rem;
+    transition: all .2s;
+    backface-visibility: hidden;
+}
+
+.btn:hover {
+    background-color: #ff7730;
+    color: #e1e4ec;
+    box-shadow: 0 .1rem 2rem rgba(0, 0, 0, .5);
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .5);
+    transform: translateY(0);
+}
+
+.text-center{
+    text-align: center;
+}
