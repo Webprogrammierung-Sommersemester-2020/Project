@@ -46,16 +46,16 @@
                     <input id = "city" class="form__input" placeholder="Stadt" type="text" name="city" required/>
                     <label for="city" class="form__label">Stadt</label>
                 </div>
-                <div class="form__group">
+                <div id="roles" class="form__group">
                     <div class="form__radio-group">
-                        <input type="radio" class="form__radio-input" id="admin" name="role">
+                        <input type="radio" class="form__radio-input" id="admin" name="role" value ="ADMIN">
                         <label for="admin" class="form__radio-label">
                             <span class="form__radio-button"></span>
                             Administrator
                         </label>
                     </div>
                     <div class="form__radio-group">
-                        <input type="radio" class="form__radio-input" id="user" name="role">
+                        <input type="radio" class="form__radio-input" id="user" name="role" value ="USER" checked>
                         <label for="user" class="form__radio-label">
                             <span class="form__radio-button"></span>
                             Benutzer
@@ -73,6 +73,6 @@
         </div>
     </div>
 </div>
-
+<script src="js/register.js" type="module"></script>
 </body>
 </html>
