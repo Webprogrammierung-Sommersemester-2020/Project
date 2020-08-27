@@ -1,12 +1,15 @@
 import PizzaService from "./services/pizzaservice.js";
 import AuthService from "./services/authservice.js";
+import {UserService} from "./services/userservice.js";
 
 let pizzas;
 let purchaseButton = document.getElementById("purchaseBtn");
 let cancelBtn = document.getElementById("cancelBtn");
+let userName;
 
 window.onload = () => {
     pizzas = JSON.parse(window.sessionStorage.getItem("pizzas"));
+    userName = window.sessionStorage.getItem("username");
     if (pizzas) {
         pizzas.forEach((pizza) => {
             PizzaService.addPizzaElementToPage(pizza, "L&ouml;schen");
@@ -54,5 +57,4 @@ function fillPurchaseTable(pizzas) {
 
     purchaseTableBody.innerHTML = bodyContent;
     total.innerHTML = totalPrice + " &euro;"
-
 }
