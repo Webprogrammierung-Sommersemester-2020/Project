@@ -15,41 +15,60 @@
         <div class="login__form">
             <form id="registerForm">
                 <div class="form__group">
-                    <input id = "username"class="form__input" placeholder="Benutzername" type="text" name="username" required/>
-                    <label class="form__label">Benutzername</label>
+                    <input id = "username"class="form__input" placeholder="Benutzername" type="text" maxlength="10" minlength="5" name="username" required/>
+                    <label for="username" class="form__label">Benutzername</label>
                 </div>
                 <div class="form__group">
-                    <input id = "password"class="form__input" placeholder="Kennwort" type="password" name="password" required/>
-                    <label class="form__label">Kennwort</label>
+                    <input id = "password"class="form__input" placeholder="Kennwort" type="password" pattern="(?=^.{5,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?!.*\s).*$" name="password" required/>
+                    <label for="password" class="form__label">Kennwort</label>
                 </div>
                 <div class="form__group">
                     <input id = "email" class="form__input" placeholder="Email" type="email" name="email" required/>
-                    <label class="form__label">Email</label>
+                    <label for="email" class="form__label">Email</label>
                 </div>
                 <div class="form__group">
                     <input id = "street" class="form__input" placeholder="Strasse" type="text" name="street" required/>
-                    <label class="form__label">Strasse</label>
+                    <label for="street" class="form__label">Strasse</label>
                 </div>
                 <div class="form__group">
-                    <input id = "number" class="form__input" placeholder="Hausnummer" type="number" name="number" required/>
-                    <label class="form__label">Hausnummer</label>
+                    <input id = "number" class="form__input" placeholder="Hausnummer" type="number" name="number" min="0" step="1" required/>
+                    <label for="number" class="form__label">Hausnummer</label>
                 </div>
                 <div class="form__group">
                     <input id = "suffix" class="form__input" placeholder="Zusatz" type="text" name="suffix"/>
-                    <label class="form__label">Zusatz</label>
+                    <label for="suffix" class="form__label">Zusatz</label>
                 </div>
                 <div class="form__group">
-                    <input id = "zipcode" class="form__input" placeholder="Postleitzahl" type="text" name="zipcode" required/>
-                    <label class="form__label">Postleitzahl</label>
+                    <input id = "zipcode" class="form__input" placeholder="Postleitzahl" type="text" pattern="[0-9]{5}" name="zipcode" required/>
+                    <label for="zipcode" class="form__label">Postleitzahl</label>
                 </div>
                 <div class="form__group">
                     <input id = "city" class="form__input" placeholder="Stadt" type="text" name="city" required/>
-                    <label class="form__label">Stadt</label>
+                    <label for="city" class="form__label">Stadt</label>
                 </div>
-                <div class="form-group">
-                    <input type="submit" class="btn" value="Registrieren"/>
-                    <input type="submit" class="btn" value="Abbrechen"/>
+                <div class="form__group">
+                    <div class="form__radio-group">
+                        <input type="radio" class="form__radio-input" id="admin" name="role">
+                        <label for="admin" class="form__radio-label">
+                            <span class="form__radio-button"></span>
+                            Administrator
+                        </label>
+                    </div>
+                    <div class="form__radio-group">
+                        <input type="radio" class="form__radio-input" id="user" name="role">
+                        <label for="user" class="form__radio-label">
+                            <span class="form__radio-button"></span>
+                            Benutzer
+                        </label>
+                    </div>
                 </div>
+                <div class="form__group-buttons">
+                    <div class="form__group">
+                        <input type="submit" class="btn" value="Registrieren"/>
+                        <input type="submit" class="btn" value="Abbrechen"/>
+                    </div>
+                </div>
+
             </form>
         </div>
     </div>
