@@ -12,13 +12,18 @@ window.onload = () => {
 }
 const username = document.getElementById("username");
 const password = document.getElementById("password");
-const loginForm = document.querySelector(".login-form");
+const loginForm = document.getElementById("login-form");
+const registerButton = document.getElementById("registerBtn");
 
 loginForm.addEventListener("submit", (event) => {
         event.preventDefault();
         login();
     }
 );
+
+registerButton.onclick = () => {
+    window.location.href = "register.html";
+}
 
 function login() {
     if(AuthService.isAuthorized()){
@@ -45,6 +50,5 @@ function login() {
     else {
         window.location.href="index.html";
     }
-
 }
 
