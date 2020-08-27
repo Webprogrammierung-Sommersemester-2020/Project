@@ -44,10 +44,19 @@ public class UserController {
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }
-
+    @GET
+    @Secured({Role.ADMIN, Role.USER})
+    @Path("/get/name/{name}")
+    public Response getUserByName(@PathParam("name") String name){
+        User user = dataService.getUserByUserName(name);
+        if (user != null){
+            return Response.ok(user).build();
+        }
+        return Response.status(Response.Status.NOT_FOUND).build();
+    }
     @POST
     public Response createUser(User user){
-        Optional<User> optionalUser = dataService.getAllUsers().stream().filter(u->u.getUserName().equals(u.getUserName())).findFirst();
+        Optional<User> optionalUser = dataService.getAllUsers().stream().filter(u->u.getUserName().equals(user.getUserName())).findFirst();
         if(!optionalUser.isPresent()){
             if (dataService.createUser(user)){
                 return Response.status(Response.Status.CREATED).build();
