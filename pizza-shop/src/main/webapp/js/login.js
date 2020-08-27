@@ -28,6 +28,7 @@ registerButton.onclick = () => {
 function login() {
     if(AuthService.isAuthorized()){
         if(AuthService.setAuthTokenToSessionAs("auth")){
+            window.sessionStorage.setItem("username",username.value);
             if (window.sessionStorage.getItem("pizzas")) {
                 window.location.href = "cart.html";
             } else {
@@ -40,6 +41,7 @@ function login() {
         if (AuthService.isAuthorized()) {
             if (AuthService.setAuthTokenToSessionAs("auth")) {
                 if (window.sessionStorage.getItem("pizzas")) {
+                    window.sessionStorage.setItem("username", username.value);
                     window.location.href = "cart.html";
                 } else {
                     window.history.back();
