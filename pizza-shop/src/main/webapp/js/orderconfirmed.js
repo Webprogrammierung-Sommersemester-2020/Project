@@ -1,12 +1,18 @@
 import PizzaService from "./services/pizzaservice.js";
+import AuthService from "./services/authservice.js";
 
 let orderPizzas;
 let order;
 let user;
 let pizzasToOffer = new Array();
-let test;
+
+const toShopButton = document.getElementById("toShop");
+const toGeneratorButton = document.getElementById("toGenerator");
+const logoutButton = document.getElementById("logout");
 
 window.onload = () => {
+    window.sessionStorage.removeItem("pizzas");
+
     order = JSON.parse(window.sessionStorage.getItem("order"));
     user = order.user;
     orderPizzas = order.pizzas;
@@ -22,8 +28,6 @@ window.onload = () => {
                 let foundIngredient = sPizza.ingredients.find(ingredient => ingredient.name === "Champignons"); //TODO:Ersetzen Champignons mit meist vorkommenden ingredienten
                 if (foundIngredient) {
                     pizzasToOffer.push(sPizza);
-                    console.log("Pizza to offer: ");
-                    console.log(pizzasToOffer);
                 }
             });
 
@@ -36,6 +40,7 @@ window.onload = () => {
                         let addToCardButton = document.getElementById("eventFor" + pizza.name);
                         addToCardButton.onclick = () => {
                             PizzaService.addPizzaToList(pizza);
+                            window.location.href="cart.html";
                         }
                     }
                 );
@@ -54,7 +59,25 @@ window.onload = () => {
             }
         })
         .catch(error => console.log(error));
-
-
 }
 
+toShopButton.onclick = () => {
+    window.location.href = "index.html";
+}
+
+toGeneratorButton.onclick = () => {
+    window.location.href = "pizzabuilder.html";
+}
+
+logoutButton.onclick = () => {
+    AuthService.logout()
+        .then(
+            httpStatus => {
+                if (httpStatus === 204) {
+                    window.sessionStorage.clear();
+                    window.location.href = "index.html";
+                }
+            }
+        )
+        .catch(error => console.log(error))
+}
