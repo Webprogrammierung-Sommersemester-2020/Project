@@ -27,7 +27,7 @@ export default class AuthService {
 
     static setAuthTokenToSessionAs(itemName) {
         if (this.token) {
-            const authToken = "Baerer " + this.token;
+            const authToken = "Bearer " + this.token;
             window.sessionStorage.setItem(itemName, authToken);
             return true;
         }
