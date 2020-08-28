@@ -33,4 +33,8 @@ export default class AuthService {
         }
         return false;
     }
+
+    static logout(){
+        return HttpService.doRequest("/pizza-shop/api/auth/logout", "POST", {"Content-Type":"application/json"});
+    }
 }
