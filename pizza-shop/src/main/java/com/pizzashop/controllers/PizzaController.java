@@ -35,7 +35,7 @@ public class PizzaController {
     }
 
     @GET
-    @Path("/get/name")
+    @Path("/get/name/{name}")
     public Response getPizzaByName(@QueryParam("name") final String name){
         Pizza pizza = dataService.getPizzaByName(name);
         if (pizza != null){
@@ -45,8 +45,8 @@ public class PizzaController {
     }
 
     @GET
-    @Path("/get/{parameter}")
-    public Response getPizzasByIngredient(@PathParam("parameter") final String parameter,@QueryParam("value") String value){
+    @Path("/get/by/{parameter}")
+    public Response getPizzasByParameter(@PathParam("parameter") final String parameter,@QueryParam("value") String value){
         List<Pizza> pizzas = dataService.getPizzasBy(parameter, value);
         if (!pizzas.isEmpty()){
             return Response.ok(pizzas).build();
