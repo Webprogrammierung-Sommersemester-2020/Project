@@ -116,10 +116,10 @@ function calcPrice() {
     }
 
     if (buttonMushrooms.classList.contains("active")) {
-        addIngredientWithPriceToPizza("Pilze", pricePerIngredient);
+        addIngredientWithPriceToPizza("Champignons", pricePerIngredient);
     }
     else {
-        deleteIngredientFromPizza("Pilze")
+        deleteIngredientFromPizza("Champignons")
     }
 
     if (buttonGreenPeppers.classList.contains("active")) {
