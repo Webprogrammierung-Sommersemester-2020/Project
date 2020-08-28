@@ -1,0 +1,41 @@
+@import "base/base.css";
+
+.header {
+    text-align: center;
+}
+
+.order-container {
+    margin: 0 auto;
+    position: relative;
+}
+
+.order {
+    width: 60%;
+    margin: 0 auto;
+    position: absolute;
+    box-shadow: 0 3rem 6rem rgba(0, 0, 0, .1);
+    background-color: whitesmoke;
+    border-radius: 3px;
+    padding: 3rem;
+    padding-left: 9rem;
+    font-size: 1.6rem;
+}
+
+.order__shape {
+    width: 20rem;
+    height: 20rem;
+    position: relative;
+    background-color: #871b15;
+    float: left;
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+    transform: translateX(-3rem);
+}
+
+img {
+    height: 100%;
+    transition: all 1s;
+}
+
