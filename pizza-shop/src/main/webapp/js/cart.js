@@ -73,8 +73,6 @@ function sendOrderAndRedirect() {
                     OrderService.createOrder(order)
                         .then(responseStatus => {
                             if (responseStatus === 201) {
-                                window.sessionStorage.setItem("pizzas", JSON.stringify(pizzas));
-                                window.sessionStorage.setItem("deliveryAddress", JSON.stringify(user.address));
                                 window.sessionStorage.setItem("order", JSON.stringify(order));
                                 window.location.href = "orderconfirmed.html";
                             } else {
