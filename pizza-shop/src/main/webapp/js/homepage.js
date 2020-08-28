@@ -1,10 +1,11 @@
 import PizzaService from "./services/pizzaservice.js";
-import HttpService from "./services/httpservice.js";
 
 let pizzas;
-let offerContainer = document.querySelector(".offer");
+let offerContainer = document.getElementById("offer");
+let cartButton = document.getElementById("cart");
+
 window.onload = () => {
- HttpService.doRequest("/pizza-shop/api/pizza/get/all", "GET")
+ PizzaService.getAllPizzas()
      .then(jsonString=>{
          pizzas = JSON.parse(jsonString);
          pizzas.forEach((pizza)=>{
@@ -19,12 +20,13 @@ window.onload = () => {
 }
 
 offerContainer.onclick = () =>{
-    redirectToPizzaGenerator();
-}
-
-function redirectToPizzaGenerator(){
     window.location.href="pizzabuilder.html";
 }
+
+cartButton.onclick = () => {
+    window.location.href="cart.html";
+}
+
 
 
 
