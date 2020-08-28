@@ -14,6 +14,9 @@ export class UserService{
     }
 
     static getUserByUserName(name){
-        return HttpService.doRequest("/pizza-shop/api/user/get/"+name,"GET");
+        let authToken = window.sessionStorage.getItem("auth");
+        if (authToken){
+            return HttpService.doRequest("/pizza-shop/api/user/get/name/"+name,"GET", {"Authorization":authToken});
+        }
     }
 }
