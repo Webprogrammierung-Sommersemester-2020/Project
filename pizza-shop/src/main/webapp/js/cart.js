@@ -1,12 +1,12 @@
 import PizzaService from "./services/pizzaservice.js";
-import AuthService from "./services/authservice.js";
 import {UserService} from "./services/userservice.js";
-import HttpService from "./services/httpservice.js";
 import OrderService from "./services/orderservice.js";
 
 let pizzas;
 let purchaseButton = document.getElementById("purchaseBtn");
 let cancelBtn = document.getElementById("cancelBtn");
+let toGeneratorButton = document.getElementById("toGenerator");
+
 let userName;
 let user;
 let order;
@@ -31,6 +31,12 @@ window.onload = () => {
     if (pizzas === null || pizzas.length === 0) {
         purchaseButton.style.visibility = "hidden";
     }
+
+    let containsCustomPizza = pizzas.find(p=>p.name.toLowerCase() === "Custom".toLowerCase() || p.name.toLowerCase() === "Generierte pizza".toLowerCase())
+
+    if(containsCustomPizza){
+        toGeneratorButton.style.visibility = "hidden";
+    }
 }
 
 purchaseButton.addEventListener("click", () =>
@@ -42,6 +48,10 @@ purchaseButton.addEventListener("click", () =>
 cancelBtn.addEventListener("click", () => {
     window.sessionStorage.removeItem("pizzas");
     window.location.href = "index.html";
+});
+
+toGeneratorButton.addEventListener("click", () => {
+    window.location.href="pizzabuilder.html";
 });
 
 function fillPurchaseTable(pizzas) {
@@ -56,7 +66,7 @@ function fillPurchaseTable(pizzas) {
     }
 
     purchaseTableBody.innerHTML = bodyContent;
-    total.innerHTML = totalPrice + " &euro;"
+    total.innerHTML = totalPrice.toFixed(2) + " &euro;"
 }
 
 function sendOrderAndRedirect() {
