@@ -50,7 +50,15 @@ let buttonCrust = document.querySelector(".btn-crust");
 
 pizzaAddButton.onclick = () => {
     PizzaService.addPizzaToList(pizza);
+    pizzaAddButton.innerHTML = "Eingef&uuml;gt"
+    pizzaAddButton.setAttribute("style",
+        "color:green; " +
+        "border:none;" +
+        "pointer-events:none;" +
+        "opacity:0.5; " +
+        "text-decoration:none;");
 }
+
 buttonPepperonni.addEventListener("click", () => {
     buttonPepperonni.classList.toggle("active");
     toggleVisibilityOfElementChildren("#peppers", "pep")
@@ -110,52 +118,47 @@ function calcPrice() {
 
     if (buttonPepperonni.classList.contains("active")) {
         addIngredientWithPriceToPizza("Paprika", pricePerIngredient);
-    }
-    else {
+    } else {
         deleteIngredientFromPizza("Paprika")
     }
 
     if (buttonMushrooms.classList.contains("active")) {
         addIngredientWithPriceToPizza("Champignons", pricePerIngredient);
-    }
-    else {
+    } else {
         deleteIngredientFromPizza("Champignons")
     }
 
     if (buttonGreenPeppers.classList.contains("active")) {
         addIngredientWithPriceToPizza("Gruene Pfeffer", pricePerIngredient);
-    }
-    else {
+    } else {
         deleteIngredientFromPizza("Gruene Pfeffer")
     }
     if (buttonSauce.classList.contains("active")) {
         addIngredientWithPriceToPizza("Weisse Sosse", pricePerIngredient);
-    }
-    else {
+    } else {
         deleteIngredientFromPizza("Weisse Sosse")
     }
     if (buttonCrust.classList.contains("active")) {
         addIngredientWithPriceToPizza("Gluten-frei", pricePerIngredient);
-    }
-    else {
+    } else {
         deleteIngredientFromPizza("Gluten-frei")
     }
     let priceElement = document.getElementById("totalPrice");
-    priceElement.innerHTML = pizza.price;
+    priceElement.innerHTML = pizza.price.toFixed(2);
 }
 
 function addIngredientWithPriceToPizza(ingredient, pricePerIngredient) {
-    let isPizzaContainsIngredient = pizza.ingredients.find(i=>i.name === ingredient);
-    if (!isPizzaContainsIngredient){
+    let isPizzaContainsIngredient = pizza.ingredients.find(i => i.name === ingredient);
+    if (!isPizzaContainsIngredient) {
         pizza.ingredients.push({name: ingredient, price: pricePerIngredient});
         pizza.price += pricePerIngredient;
     }
 
 }
 
-function deleteIngredientFromPizza(ingredient){
-    let component = pizza.ingredients.find(i=>i.name === ingredient);
-    if(component){
+function deleteIngredientFromPizza(ingredient) {
+    let component = pizza.ingredients.find(i => i.name === ingredient);
+    if (component) {
         let index = pizza.ingredients.indexOf(component);
         pizza.ingredients.splice(index);
     }
