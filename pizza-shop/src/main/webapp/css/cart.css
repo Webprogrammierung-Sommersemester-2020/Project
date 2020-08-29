@@ -52,6 +52,11 @@ th, td {
     font-size: 1.6rem;
 }
 
-.footer-td{
+.footer-td {
     border-bottom: none;
+}
+
+.toGenerator-container {
+    margin: 7rem;
+    position: absolute;
 }
